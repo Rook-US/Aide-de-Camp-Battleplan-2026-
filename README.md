@@ -1,6 +1,6 @@
 # Aide-de-Camp for Battleplan
 
-Windows campaign editor for Battleplan. It borrows the useful Aide-de-Camp layout: a unit hierarchy on the left, unit details and mass naming on the right. The Battleplan loader and field mapping are separate from the Grand Tactician editor. The default save folder is resolved from the current Windows account; it is not tied to the original developer's profile.
+Windows campaign editor for Battleplan. It borrows the useful Aide-de-Camp layout: a unit hierarchy on the left, unit details and mass naming on the right. The Battleplan loader and field mapping are separate from the Grand Tactician editor. The default save folder is resolved from the current Windows account.
 
 Documentation: [Quick start](docs/QUICK_START.md) · [User guide](docs/USER_GUIDE.md) · [Developer guide](docs/DEVELOPER_GUIDE.md) · [Battleplan data map](docs/BATTLEPLAN_DATA_MAP.md) · [Release notes](docs/RELEASE_NOTES.md).
 
