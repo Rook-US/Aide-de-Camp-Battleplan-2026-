@@ -1,0 +1,19 @@
+# Local builds and intermediate files
+bin/
+obj/
+**/bin/
+**/obj/
+artifacts/
+
+# Per-campaign editor choices and game saves are personal data
+catalogs/
+*.camp
+*.bak
+*.adc.tmp
+
+# Local IDE and OS state
+.vs/
+.idea/
+*.user
+*.suo
+Thumbs.db

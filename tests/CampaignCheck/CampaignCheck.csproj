@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net9.0</TargetFramework><Nullable>enable</Nullable><ImplicitUsings>enable</ImplicitUsings></PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../Campaign.cs" Link="Campaign.cs" />
+    <Compile Include="../../BattleplanTypeCatalog.cs" Link="BattleplanTypeCatalog.cs" />
+    <Compile Include="../../OobNamingService.cs" Link="OobNamingService.cs" />
+    <Compile Include="../../NamingCatalog.cs" Link="NamingCatalog.cs" />
+    <Compile Include="../../BattalionNamingService.cs" Link="BattalionNamingService.cs" />
+    <Compile Include="../../ScatteredNumberService.cs" Link="ScatteredNumberService.cs" />
+    <Compile Include="../../MassOobNamingService.cs" Link="MassOobNamingService.cs" />
+  </ItemGroup>
+</Project>
