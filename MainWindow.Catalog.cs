@@ -6,15 +6,28 @@ namespace BattleplanADC;
 
 public partial class MainWindow
 {
-    // The catalog lives beside this project's build folders, not beside or inside a game
-    // save. Tests run from their own output folder and receive a separate catalog path.
+    // Release packages may live under Program Files or a read-only download folder. Keep
+    // player choices in that Windows account's LocalAppData, outside the game save.
+    // The override lets the UI harness use an isolated disposable catalog directory.
     private NamingCatalog? _catalog;
     private List<NamingProposal> _catalogPreview = [];
     private List<string> _catalogProblems = [];
-    private readonly string _catalogDirectory = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "catalogs"));
+    private readonly string _catalogDirectory = Environment.GetEnvironmentVariable("BATTLEPLAN_ADC_CATALOG_DIR") is { Length: > 0 } overridePath
+        ? Path.GetFullPath(overridePath)
+        : Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Aide-de-Camp", "Battleplan", "catalogs");
 
     private void OpenCatalog(Campaign campaign)
     {
+        // Carry forward catalogs made by development builds in this workspace. The
+        // migration copies only this campaign's ID-keyed sidecar and leaves the old one.
+        var currentFile = NamingCatalog.FileFor(campaign.FilePath, _catalogDirectory);
+        var legacyDirectory = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "catalogs"));
+        var legacyFile = NamingCatalog.FileFor(campaign.FilePath, legacyDirectory);
+        if (!File.Exists(currentFile) && File.Exists(legacyFile))
+        {
+            var old = NamingCatalog.Load(campaign.FilePath, legacyDirectory);
+            old.Save(_catalogDirectory);
+        }
         _catalog = NamingCatalog.Load(campaign.FilePath, _catalogDirectory);
         CatalogTypeFilter.Items.Clear();
         CatalogTypeFilter.Items.Add("All game types");

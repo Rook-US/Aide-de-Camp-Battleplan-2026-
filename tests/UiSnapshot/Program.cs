@@ -13,6 +13,8 @@ internal static class Program
     {
         if (args.Length is < 1 or > 2) throw new ArgumentException("Output directory required; optional campaign path may follow.");
         Directory.CreateDirectory(args[0]);
+        // Keep test previews and number reservations out of the player's real profile.
+        Environment.SetEnvironmentVariable("BATTLEPLAN_ADC_CATALOG_DIR", Path.GetFullPath(Path.Combine(args[0], "catalogs")));
         _ = new Application { ShutdownMode = ShutdownMode.OnExplicitShutdown };
         var window = new MainWindow { Width = 1360, Height = 880 };
         // Use a known copied snapshot when the player's live campaign has moved on.

@@ -2,13 +2,13 @@
 
 ## What the editor changes
 
-The editor reads a Battleplan `.camp` campaign, displays its unit tree, and changes the player name override (`UserTypedName`) for chosen units. It leaves the game's original names, IDs, combat fields, and other save data in place. Name changes stay in memory until **Save with backup**. Command levels, rename preferences, patterns, and reserved numbers live in a separate editor catalog in the `catalogs` folder; these choices can be saved when you preview even if you do not save the campaign.
+The editor reads a Battleplan `.camp` campaign, displays its unit tree, and changes the player name override (`UserTypedName`) for chosen units. It leaves the game's original names, IDs, combat fields, and other save data in place. Name changes stay in memory until **Save with backup**. Command levels, rename preferences, patterns, and reserved numbers live in a separate editor catalog under `%LocalAppData%\Aide-de-Camp\Battleplan\catalogs`; these choices can be saved when you preview even if you do not save the campaign.
 
 Close Battleplan before saving. The editor checks that the campaign has not changed on disk since opening it, writes a timestamped `.bak` copy beside the campaign, and refuses to overwrite a newer save. Keep your own backup as well when working with a new game version.
 
 ## Open and navigate
 
-1. If using the source repository, build it with `dotnet build BattleplanADC.csproj -c Release -o bin\documented`, then launch `bin\documented\Battleplan ADC.exe`. Install the .NET 9 Desktop SDK if needed.
+1. Download the Windows ZIP from the GitHub Releases page, extract it, and run `Battleplan ADC.exe`. The ZIP includes the .NET runtime. If using the source repository instead, build it with `dotnet build BattleplanADC.csproj -c Release -o bin\documented` and launch `bin\documented\Battleplan ADC.exe`.
 2. Select a campaign in the top picker and choose **Open**, or use **Browse .camp**. When there is exactly one campaign in Battleplan's local save folder, the editor opens it automatically.
 3. Use the army tree on the left. Search finds displayed names, game unit IDs, and officer names. **Expand all** and **Collapse all** control the tree. Click a unit to see its details in **One unit**.
 4. Double click a unit, press F2, or choose **Edit name (F2)** to edit a name in the tree. Enter commits; Escape cancels. **Save with backup** writes applied names to the campaign.

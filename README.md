@@ -2,11 +2,13 @@
 
 Windows campaign editor for Battleplan. It borrows the useful Aide-de-Camp layout: a unit hierarchy on the left, unit details and mass naming on the right. The Battleplan loader and field mapping are separate from the Grand Tactician editor. The default save folder is resolved from the current Windows account; it is not tied to the original developer's profile.
 
-Documentation: [User guide](docs/USER_GUIDE.md) · [Developer guide](docs/DEVELOPER_GUIDE.md) · [Battleplan data map](docs/BATTLEPLAN_DATA_MAP.md).
+Documentation: [Quick start](docs/QUICK_START.md) · [User guide](docs/USER_GUIDE.md) · [Developer guide](docs/DEVELOPER_GUIDE.md) · [Battleplan data map](docs/BATTLEPLAN_DATA_MAP.md) · [Release notes](docs/RELEASE_NOTES.md).
 
 ## Run
 
-Requires Windows and the .NET 9 Desktop SDK. From the repository folder, run `dotnet build BattleplanADC.csproj -c Release -o bin\documented`, then launch `bin\documented\Battleplan ADC.exe`. The campaign picker lists `.camp` files in `AppData\LocalLow\Foolish Mortals\Battleplan`. A sole campaign opens automatically. **Browse .camp** can open a campaign elsewhere. Build output and personal campaign files are excluded from this repository.
+For most players, download the Windows ZIP from [Releases](https://github.com/Rook-US/Aide-de-Camp-Battleplan-2026-/releases), extract it, and run `Battleplan ADC.exe`. The release includes its .NET runtime. Windows may show a first-run warning for this unsigned community app.
+
+To build from source, use Windows with the .NET 9 Desktop SDK: `dotnet build BattleplanADC.csproj -c Release -o bin\documented`, then run `bin\documented\Battleplan ADC.exe`. The campaign picker finds `.camp` files in the current Windows account's `AppData\LocalLow\Foolish Mortals\Battleplan` folder. A sole campaign opens automatically. **Browse .camp** can open a campaign elsewhere. Build output and personal campaign files are excluded from this repository.
 
 ## Renaming
 
@@ -22,7 +24,7 @@ For larger jobs, turn on **More tools** and use **Patterns and filters**. The ar
 
 Choose a tier and branch, enter one or more consecutive user-name examples, then infer and review a naming pattern. You can edit the pattern directly. Tokens include `{n}` for a sequence, `{n:ordinal}` for `1st`/`2nd`, `{slot}` for position among selected siblings, and `{parentNumber}` for the nearest numbered ancestor. Set a command number manually for a specific unit, such as regiment `25` for `25IR`. The preview shows each proposed name and permits edits. The entire army can be renamed after assigning the desired tiers, branches, and schemes. The preview flags duplicate final names.
 
-Classifications, rename policies, number overrides, and patterns are stored in `catalogs` under this editor folder, keyed to the campaign path and game unit IDs. The catalog is not written into the game save. Only applied `UserTypedName` changes are saved to the `.camp` file.
+Classifications, rename policies, number overrides, and patterns are stored under the current account's `%LocalAppData%\Aide-de-Camp\Battleplan\catalogs`, keyed to the campaign path and game unit IDs. Older catalogs from this development folder are copied on first use. The catalog is not written into the game save. Only applied `UserTypedName` changes are saved to the `.camp` file.
 
 Pattern inference uses example syntax; it cannot determine whether a generic HQ is a division, regiment, or battalion, or whether a number means a parent or child slot, without player classification and review. Multiple examples are checked for a consecutive sequence. When inference fails, the editor explains whether examples are missing or inconsistent and suggests tier/branch assignments, more consecutive examples, or an advanced pattern. Army preview reports unclassified HQs, missing schemes, and missing numbered ancestors with corrective steps. Irregular naming schemes require an edited pattern or preview names.
 
